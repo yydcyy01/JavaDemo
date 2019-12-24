@@ -15,15 +15,15 @@ import java.util.*;
  集合的一些技巧：
 
  需要唯一吗？
- 需要：Set
- 需要制定顺序：
- 需要： TreeSet
- 不需要：HashSet
- 但是想要一个和存储一致的顺序(有序):LinkedHashSet
- 不需要：List
- 需要频繁增删吗？
- 需要：LinkedList
- 不需要：ArrayList
+     需要：Set
+         需要制定顺序：
+             需要： TreeSet
+             不需要：HashSet
+            但是想要一个和存储一致的顺序(有序):LinkedHashSet
+     不需要：List
+         需要频繁增删吗？
+             需要：LinkedList
+             不需要：ArrayList
 
  如何记录每一个容器的结构和所属体系呢？
 
