@@ -1,11 +1,14 @@
 package cn.yydcyy._3;
 
 /**
+ * @author YYDCYY
+ * @create 2019-12-25
  *
  */
 public class _6StringSwitch {
 
   public static void main(String[] args) {
+
     String color = "red";
     // 老的方式: 使用 if-then 判断
     if("red".equals(color)) {
