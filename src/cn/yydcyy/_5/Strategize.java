@@ -3,8 +3,9 @@ package cn.yydcyy._5;
 /**
  * @author YYDCYY
  * @create 2020-02-09
+ * functional/Strategize.java 2
+ * 不过一个Demo 能写这么复杂, 也是没谁了.
  */
-//functional/Strategize.java 2
 
 /**
  * 定义接口
@@ -14,7 +15,7 @@ interface Strategy{
     }
 
 /**
- * 接口具体实现
+ * Soft 方法实现"转为小写"功能.
  */
 class Soft implements Strategy{
     public String approach(String msg) {
@@ -23,7 +24,7 @@ class Soft implements Strategy{
 }
 
 /**
- * 复制一次
+ * 复制一次, 静态方法.
  */
 class Unrelated{
         static String twice(String msg) {
@@ -35,34 +36,39 @@ class Unrelated{
  *
  */
 public class Strategize{
-        Strategy strategy;
+        Strategy strategy; // 接口, 多态使用
         String msg;
 
+        //初始化构造参数
         Strategize(String msg) {
             strategy = new Soft(); // [1]
             this.msg = msg;
         }
-}
+        void communicate() {
+            System.out.println(strategy.approach(msg));
+        }
 
-void communicate() {
-    System.out.println(strategy.approach(msg));
-}
-void changeStrategy(Strategy strategy) {
-        this.strategy = strategy;
-}
+        void changeStrategy(Strategy strategy) {
+            this.strategy = strategy;
+        }
 
-public static void main(String[] args) {
-    Strategy[] strategies = { new Strategy() { // [2]
-        public String approach(String msg) {
-            return msg.toUpperCase() + "!";
+        public static void main(String[] args) {
+            //数组? 匿名内部类实现接口?  功能是字符串转为大写.
+            Strategy[] strategies = { new Strategy() { // [2]
+                public String approach(String msg) {
+                    return msg.toUpperCase() + "!";
+                }
+            }, msg -> msg.substring(0, 5), // [3]
+                    Unrelated::twice // [4]
+            };
+            Strategize s = new Strategize("Hello there");
+            s.communicate();
+            for(Strategy newStrategy : strategies) {
+                s.changeStrategy(newStrategy); // [5]
+                s.communicate(); // [6] }
             }
-        }, msg -> msg.substring(0, 5), // [3]
-        Unrelated::twice // [4]
-    };
-    Strategize s = new Strategize("Hello there");
-    s.communicate();
-    for(Strategy newStrategy : strategies) {
-        s.changeStrategy(newStrategy); // [5]
-        s.communicate(); // [6] }
-    }
+        }
 }
+
+
+
